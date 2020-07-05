@@ -40,7 +40,7 @@ function updateResults() {
             for (i in response["Title"]) { //loop to add results
                 var p = document.createElement("p");
                 var node = document.createTextNode(response["Title"][i] +
-                    "   " + response["Description"][i]);
+                    ",  " + response["Description"][i]);
                 p.appendChild(node);
                 resultsElement.appendChild(p);
             }
