@@ -4,7 +4,7 @@ from models import Schema
 
 import json
 
-app = Flask(__name__, root_path='../frontend')
+app = Flask(__name__)
 
 
 @app.after_request
