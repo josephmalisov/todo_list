@@ -53,10 +53,19 @@ class ToDoModel:
     def create(self, text, description):
         query = f'insert into {self.TABLENAME} ' \
                 f'(Title, Description) ' \
-                f'values ("{text}","{description}")'
-        
+                f'values ("{text}","{description}");'
+        print("\n\n")
+        print(query)
+        print("\n\n")
+
         result = self.conn.execute(query)
-        df = pd.read_sql_query("SELECT * from Todo", self.conn)
+        self.conn.commit()
+
+        print("\n\n")
+        print(result)
+        print("\n\n")
+
+        df = pd.read_sql_query("SELECT * from Todo;", self.conn)
         print("\n\n")
         print(df)
         print("\n\n")

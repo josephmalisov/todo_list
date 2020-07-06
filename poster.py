@@ -1,2 +1,2 @@
 import requests
-requests.post("http://localhost:5000/todo", json={"text":"my first todo", "description":"my first todo"})
+requests.post("http://localhost:5000/todo", json={"text":"10", "description":"10"})

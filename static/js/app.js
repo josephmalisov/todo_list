@@ -39,6 +39,7 @@ function updateResults() {
         //     return;
         // }
 
+        $("#results").empty();
 
         var client = new HttpClient();
         client.get(origin + "/todo/" + userInput, function(response) {
@@ -63,8 +64,6 @@ function updateResults() {
     }
 }
 
-updateResults();
-
 function addButton() {
     $("#addCard").toggle();
 }
@@ -83,5 +82,11 @@ function addNote() {
 
 
     //post the new note
-    $.post("/todo/", jsonObject, updateResults())
+    $.post(origin + "/todo", jsonObject, function(response) { updateResults() })
 }
+
+//fetch notes
+updateResults();
+
+//hide add display
+$("#addCard").hide();

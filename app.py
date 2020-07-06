@@ -33,7 +33,8 @@ def list_todo():
 
 @app.route("/todo", methods=["POST"])
 def create_todo():
-    return jsonify(ToDoService().create(request.get_json()))
+    # jsonify(ToDoService().create(request.get_json()))
+    return jsonify(ToDoService().create(request.get_json("hey")))
 
 
 if __name__ == "__main__":
