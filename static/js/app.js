@@ -6,6 +6,8 @@
 
 var origin = window.location.origin;
 
+var items = []
+
 //credit to https://stackoverflow.com/questions/247483/http-get-request-in-javascript
 var HttpClient = function() {
     this.get = function(aUrl, aCallback) {
@@ -47,15 +49,12 @@ function updateResults() {
             response = JSON.parse(response);
             console.log(response);
             for (i in response["Title"]) { //loop to add results
-                $("#results").append(`
-                <div class="card bg-success m-4">
-                    <div class="card-header">
-                        <h6>${response["Title"][i]}</h6>
-                    </div>
-                    <div class="card-body">
-                        <h6>${response["Description"][i]}</h6>
-                    </div>
-                </div>`);
+                $("#results").append(todo_card_maker(response));
+                var currItem = []
+                for (j in response) {
+                    currItem.push(response[j][i])
+                }
+                items.push(currItem)
             }
         });
 
@@ -85,8 +84,16 @@ function addNote() {
     $.post(origin + "/todo", jsonObject, function(response) { updateResults() })
 }
 
+function deleteButton() {
+
+}
+
 //fetch notes
 updateResults();
 
 //hide add display
 $("#addCard").hide();
+
+function deleteButton(id) {
+    $.post(origin + "/todo/del", JSON.stringify(id), function(response) { updateResults() })
+}

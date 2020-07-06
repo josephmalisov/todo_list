@@ -60,6 +60,7 @@ class ToDoModel:
 
         result = self.conn.execute(query)
         self.conn.commit()
+        # self.conn.commit()
 
         print("\n\n")
         print(result)
@@ -72,12 +73,13 @@ class ToDoModel:
 
         return result
    
-    def delete(self, myId):
-        query = f'DELETE from {TABLENAME}' \
-                f'WHERE id = "{myId}"'
+    def deleteItem(self, myId):
+        query = f'DELETE from {self.TABLENAME}' \
+                f' WHERE id = "{myId}"'
 
         result = self.conn.execute(query)
-        return result
+        self.conn.commit()
+        return ""
 
     def list_items(self, where_clause=""):
         query = f"SELECT id, Title, Description, DueDate, _is_done " \
@@ -88,6 +90,8 @@ class ToDoModel:
         #           for i, column in enumerate(result_set[0].keys())}
         #           for row in result_set]
         df = pd.read_sql_query(query, self.conn)
+        self.conn.commit()
+        print(df) #just for displaying the result
         result = df.to_json()
         return result
 
