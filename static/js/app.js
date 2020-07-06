@@ -49,7 +49,7 @@ function updateResults() {
             response = JSON.parse(response);
             console.log(response);
             for (i in response["Title"]) { //loop to add results
-                $("#results").append(todo_card_maker(response));
+                $("#results").append(todo_card_primer(response));
                 var currItem = []
                 for (j in response) {
                     currItem.push(response[j][i])
