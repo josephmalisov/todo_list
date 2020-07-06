@@ -18,14 +18,22 @@ var HttpClient = function() {
         anHttpRequest.open("GET", aUrl, true);
         anHttpRequest.send(null);
     }
+    this.post = function(aUrl, aCallback) {
+        var anHttpRequest = new XMLHttpRequest();
+        anHttpRequest.onreadystatechange = function() {
+            if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+                aCallback(anHttpRequest.responseText);
+        }
+
+        anHttpRequest.open("POST", aUrl, true);
+        anHttpRequest.send(null);
+    }
 }
 
 //UPDATING HTML
 
 function updateResults() {
     try {
-        var resultsElement = document.getElementById("results"); //get the html element where we will display results
-        resultsElement.innerHTML = null; //get rid of any old results
         var userInput = document.getElementById("userInput").value; //get whatever is in the text field
         // if (userInput.length < 1) {
         //     return;
@@ -38,11 +46,15 @@ function updateResults() {
             response = JSON.parse(response);
             console.log(response);
             for (i in response["Title"]) { //loop to add results
-                var p = document.createElement("p");
-                var node = document.createTextNode(response["Title"][i] +
-                    ",  " + response["Description"][i]);
-                p.appendChild(node);
-                resultsElement.appendChild(p);
+                $("#results").append(`
+                <div class="card bg-success m-4">
+                    <div class="card-header">
+                        <h6>${response["Title"][i]}</h6>
+                    </div>
+                    <div class="card-body">
+                        <h6>${response["Description"][i]}</h6>
+                    </div>
+                </div>`);
             }
         });
 
@@ -52,3 +64,24 @@ function updateResults() {
 }
 
 updateResults();
+
+function addButton() {
+    $("#addCard").toggle();
+}
+
+function addNote() {
+    var mytext = $("#newTitle").val();
+    var mydescription = $("#newDescription").val();
+
+    console.log(mytext);
+    console.log(mydescription);
+
+
+    var myObj = { text: mytext, description: mydescription };
+    var jsonObject = JSON.stringify(myObj);
+    console.log(JSON.parse(jsonObject));
+
+
+    //post the new note
+    $.post("/todo/", jsonObject, updateResults())
+}

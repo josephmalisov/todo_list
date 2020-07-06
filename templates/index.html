@@ -2,8 +2,8 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta charset="utf-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -12,7 +12,7 @@
 </head>
 
 <body>
-    <div class="container">
+    <div class="container m-4">
         <div class="row">
             <div class="col">
                 <div class="card bg-primary">
@@ -21,14 +21,23 @@
                         <input id="userInput" onkeyup="updateResults()" type="text" placeholder="Type here...">
                     </div>
                 </div>
-            </div>
-            <div class="col">
-                <h3 style="text-align: center;">List:<br/></h3>
-                <div class="card bg-success ">
-                    <div class="card-body">
-                        <h6 id="results"></h6>
+                <button type="button" class="btn btn-primary m-2" onclick="addButton()">
+                    Add 
+                </button>
+                <div class="card bg-dark">
+                    <div class="card-body" id="addCard">
+                        <h6 class="text-light">Title</h6>
+                        <input id="newTitle" type="text" placeholder="Enter title...">
+                        <input id="newDescription" type="text" placeholder="Enter note...">
+                        <input type="submit" class="btn btn-secondary" onclick="addNote()"></button>
                     </div>
+                    </form>
                 </div>
+            </div>
+            <div class="col" id="results">
+                <h3 style="text-align: center;">
+                    List:<br/>
+                </h3>
             </div>
         </div>
     </div>
