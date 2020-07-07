@@ -15,3 +15,7 @@ class ToDoService:
     def deleteItem(self, myid):
         response = self.model.deleteItem(int(myid))
         return response
+
+    def checkItem(self, myid):
+        response = self.model.checkItem(int(myid))
+        return response

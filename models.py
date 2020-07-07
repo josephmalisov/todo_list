@@ -95,6 +95,17 @@ class ToDoModel:
         result = df.to_json()
         return result
 
+    def checkItem(self, myId):
+        query = f'UPDATE {self.TABLENAME} SET _is_done = _is_done + 1' \
+                f' WHERE id = "{myId}"'
+
+        result = self.conn.execute(query)
+        self.conn.commit()
+
+        print(f"\nUpdated {myId}")
+
+        return ""
+
 
 class User:
     TABLENAME = "User"

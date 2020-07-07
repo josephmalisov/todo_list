@@ -5,7 +5,7 @@
  */
 
 var origin = window.location.origin;
-
+var g_response;
 var items = []
 
 //credit to https://stackoverflow.com/questions/247483/http-get-request-in-javascript
@@ -47,6 +47,7 @@ function updateResults() {
         client.get(origin + "/todo/" + userInput, function(response) {
             console.log(response);
             response = JSON.parse(response);
+            g_response = response
             console.log(response);
             for (i in response["Title"]) { //loop to add results
                 $("#results").append(todo_card_maker(response));
@@ -84,8 +85,12 @@ function addNote() {
     $.post(origin + "/todo", jsonObject, function(response) { updateResults() })
 }
 
-function deleteButton() {
+function deleteButton(id) {
+    $.post(origin + "/todo/del", JSON.stringify(id), function(response) { updateResults() })
+}
 
+function checkButton(id) {
+    $.post(origin + "/todo/done", JSON.stringify(id), function(response) { updateResults() })
 }
 
 //fetch notes
@@ -93,10 +98,6 @@ updateResults();
 
 //hide add display
 $("#addCard").hide();
-
-function deleteButton(id) {
-    $.post(origin + "/todo/del", JSON.stringify(id), function(response) { updateResults() })
-}
 
 function dark_mode() {
     $("body").css('background-color', '#263c57')

@@ -30,7 +30,6 @@ def list_todo():
     response = ToDoService().listStuff()
     return response
 
-
 @app.route("/todo", methods=["POST"])
 def create_todo():
     return jsonify(ToDoService().create(request.get_json("hey")))
@@ -39,6 +38,11 @@ def create_todo():
 def delete_todo():
     # jsonify(ToDoService().create(request.get_json()))
     return jsonify(ToDoService().deleteItem(request.get_json("hey")))
+
+@app.route("/todo/done", methods=["POST"])
+def check_todo():
+    # jsonify(ToDoService().create(request.get_json()))
+    return jsonify(ToDoService().checkItem(request.get_json("hey")))
 
 
 if __name__ == "__main__":

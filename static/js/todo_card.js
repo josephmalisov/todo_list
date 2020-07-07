@@ -3,7 +3,7 @@
 function todo_card_maker(response) {
     var bg_color = ""
     var check_button_color
-    if (response["_is_done"][i] == "0") {
+    if (parseInt(response["_is_done"][i]) % 2 == "0") {
         bg_color = "bg-warning"
         check_button_color = "btn-dark"
     } else {
@@ -13,7 +13,7 @@ function todo_card_maker(response) {
     return `
 <div class="card ${bg_color} m-4" id="${response["id"][i]}">
     <div class="card-header pb-0">
-        <h6>${response["Title"][i]}</h6>
+        <h4><b>${response["Title"][i]}</b></h4>
     </div>
     <div class="card-body">
         <h6>${response["Description"][i]}</h6>
