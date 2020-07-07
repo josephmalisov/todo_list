@@ -8,7 +8,7 @@ function todo_card_maker(response) {
         check_button_color = "btn-dark"
     } else {
         bg_color = "bg-success"
-        check_button_color = "btn-secondary"
+        check_button_color = "btn-dark"
     }
     return `
 <div class="card ${bg_color} m-4" id="${response["id"][i]}">

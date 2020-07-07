@@ -59,10 +59,6 @@ function updateResults() {
             console.log(response);
             for (i in response["Title"]) { //loop to add results
                 $("#results").append(todo_card_maker(response));
-                var currItem = []
-                for (j in response) {
-                    currItem.push(response[j][i])
-                }
             }
             addItems(response);
         });
@@ -104,7 +100,10 @@ function addNote() {
 }
 
 function deleteButton(id) {
-    $.post(origin + "/todo/del", JSON.stringify(id), function(response) { updateResults() })
+    $.post(origin + "/todo/del", JSON.stringify(id), function(response) {
+        $("#" + id).remove();
+        addItems(response);
+    })
 }
 
 function checkButton(id) {
