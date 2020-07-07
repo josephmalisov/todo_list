@@ -49,7 +49,7 @@ function updateResults() {
             response = JSON.parse(response);
             console.log(response);
             for (i in response["Title"]) { //loop to add results
-                $("#results").append(todo_card_primer(response));
+                $("#results").append(todo_card_maker(response));
                 var currItem = []
                 for (j in response) {
                     currItem.push(response[j][i])
@@ -96,4 +96,8 @@ $("#addCard").hide();
 
 function deleteButton(id) {
     $.post(origin + "/todo/del", JSON.stringify(id), function(response) { updateResults() })
+}
+
+function dark_mode() {
+    $("body").css('background-color', '#263c57')
 }
