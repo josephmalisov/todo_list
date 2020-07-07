@@ -5,8 +5,17 @@
  */
 
 var origin = window.location.origin;
-var g_response;
-var items = []
+var todo_items;
+
+ID_COLUMN = "id";
+TITLE_COLUMN = "Title"
+DESCRIPTION_COLUMN = "Description"
+IS_DONE_COLUMN = "_is_done"
+IS_DELETED_COLUMN = "_is_deleted"
+CREATED_ON_COLUMN = "CreatedOn"
+DUE_DATE_COLUMN = "DueDate"
+USER_ID_COLUMN = "UserId"
+
 
 //credit to https://stackoverflow.com/questions/247483/http-get-request-in-javascript
 var HttpClient = function() {
@@ -47,7 +56,6 @@ function updateResults() {
         client.get(origin + "/todo/" + userInput, function(response) {
             console.log(response);
             response = JSON.parse(response);
-            g_response = response
             console.log(response);
             for (i in response["Title"]) { //loop to add results
                 $("#results").append(todo_card_maker(response));
@@ -55,12 +63,22 @@ function updateResults() {
                 for (j in response) {
                     currItem.push(response[j][i])
                 }
-                items.push(currItem)
             }
+            addItems(response);
         });
 
     } catch (exception) {
         console.log("Error: " + exception);
+    }
+}
+
+function addItems(response) {
+    for (j in response["id"]) {
+        todo_items.j = Todo_item(
+                response[ID_COLUMN][j],
+                response[TITLE_COLUMN][j]),
+            response[DESCRIPTION_COLUMN][j],
+            response[IS_DONE_COLUMN][j]
     }
 }
 
