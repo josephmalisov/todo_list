@@ -5,7 +5,6 @@
  */
 
 var origin = window.location.origin;
-var todo_items;
 
 ID_COLUMN = "id";
 TITLE_COLUMN = "Title"
@@ -68,16 +67,6 @@ function updateResults() {
     }
 }
 
-function addItems(response) {
-    for (j in response["id"]) {
-        todo_items.j = Todo_item(
-                response[ID_COLUMN][j],
-                response[TITLE_COLUMN][j]),
-            response[DESCRIPTION_COLUMN][j],
-            response[IS_DONE_COLUMN][j]
-    }
-}
-
 function addButton() {
     $("#addCard").toggle();
 }
@@ -102,7 +91,7 @@ function addNote() {
 function deleteButton(id) {
     $.post(origin + "/todo/del", JSON.stringify(id), function(response) {
         $("#" + id).remove();
-        addItems(response);
+        delete addItems["id"];
     })
 }
 

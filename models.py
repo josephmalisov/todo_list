@@ -82,7 +82,7 @@ class ToDoModel:
         return ""
 
     def list_items(self, where_clause=""):
-        query = f"SELECT id, Title, Description, DueDate, _is_done " \
+        query = f"SELECT * " \
                 f"from {self.TABLENAME} WHERE _is_deleted != {1} " + where_clause
         print (query)
         # result_set = self.conn.execute(query).fetchall()
