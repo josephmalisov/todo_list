@@ -56,10 +56,9 @@ function updateResults() {
             console.log(response);
             response = JSON.parse(response);
             console.log(response);
-            for (i in response["Title"]) { //loop to add results
-                $("#results").append(todo_card_maker(response));
-            }
             addItems(response);
+
+            renderAll();
         });
 
     } catch (exception) {
