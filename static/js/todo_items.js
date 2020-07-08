@@ -5,7 +5,7 @@ var todo_items = {};
 function addItems(response) {
     try {
         for (j in response["id"]) {
-            todo_items[`${j}`] = new Todo_item(
+            todo_items[`${response[ID_COLUMN][j]}`] = new Todo_item(
                 response[ID_COLUMN][j],
                 response[TITLE_COLUMN][j],
                 response[DESCRIPTION_COLUMN][j],
@@ -24,6 +24,15 @@ function addItems(response) {
 
 function renderAll() {
     for (i in todo_items) {
-        $("#results").append(todo_card_maker(todo_items[`${i}`]))
+        renderItem(todo_items[i])
+    }
+}
+
+function renderItem(item) {
+    var isDone = item["isDone"] % 2;
+    if (!isDone) {
+        $("#results").append(todo_card_maker(item))
+    } else {
+        $("#results-done").append(todo_card_maker(item))
     }
 }

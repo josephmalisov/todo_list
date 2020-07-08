@@ -10,8 +10,9 @@ class Todo_item {
         this.createdOn = createdOn;
         this.dueDate = dueDate;
         this.userId = userId;
-        this.renderItem = function() {
-            todo_card_maker(this)
-        }
+    }
+
+    set(param, newValue) {
+        this[`${param}`] = newValue
     }
 }

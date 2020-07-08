@@ -41,7 +41,6 @@ var HttpClient = function() {
 }
 
 //UPDATING HTML
-
 function updateResults() {
     try {
         var userInput = document.getElementById("userInput").value; //get whatever is in the text field
@@ -82,7 +81,6 @@ function addNote() {
     var jsonObject = JSON.stringify(myObj);
     console.log(JSON.parse(jsonObject));
 
-
     //post the new note
     $.post(origin + "/todo", jsonObject, function(response) { updateResults() })
 }
@@ -90,12 +88,18 @@ function addNote() {
 function deleteButton(id) {
     $.post(origin + "/todo/del", JSON.stringify(id), function(response) {
         $("#" + id).remove();
-        delete addItems["id"];
+        delete todo_items[`${id}`];
     })
 }
 
 function checkButton(id) {
-    $.post(origin + "/todo/done", JSON.stringify(id), function(response) { updateResults() })
+    $.post(origin + "/todo/done", JSON.stringify(id), function(response) {
+        curr_item = todo_items[`${id}`]
+
+        $("#" + id).remove();
+        curr_item.set("isDone", todo_items[`${id}`]["isDone"] + 1)
+        renderItem(curr_item)
+    })
 }
 
 //fetch notes
@@ -103,7 +107,3 @@ updateResults();
 
 //hide add display
 $("#addCard").hide();
-
-function dark_mode() {
-    $("body").css('background-color', '#263c57')
-}

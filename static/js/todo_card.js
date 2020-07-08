@@ -5,15 +5,12 @@ function todo_card_maker(todo_item) {
         console.log(todo_item)
         var bg_color = ""
         var check_button_color
-        var whichDiv = ""
-        if (parseInt(todo_item[IS_DONE_COLUMN]) % 2 == "0") {
+        if (parseInt(todo_item["isDone"]) % 2 == "0") {
             bg_color = "bg-warning"
             check_button_color = "btn-dark"
-            whichDiv = "results"
         } else {
             bg_color = "bg-success"
             check_button_color = "btn-dark"
-            whichDiv = "results-done"
         }
         return `
 <div class="card ${bg_color} m-4" id="${todo_item["id"]}">
