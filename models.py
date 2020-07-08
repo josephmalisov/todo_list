@@ -1,6 +1,14 @@
 import sqlite3
 import pandas as pd
 
+ID_COLUMN = "id"
+TITLE_COLUMN = "Title"
+DESCRIPTION_COLUMN = "Description"
+IS_DONE_COLUMN = "_is_done"
+IS_DELETED_COLUMN = "_is_deleted"
+CREATED_ON_COLUMN = "CreatedOn"
+DUE_DATE_COLUMN = "DueDate"
+USER_ID_COLUMN = "UserId"
 
 class Schema:
     def __init__(self):
@@ -103,6 +111,20 @@ class ToDoModel:
         self.conn.commit()
 
         print(f"\nUpdated {myId}")
+
+        return ""
+
+    def updateItem(self, myItem):
+        query = f'UPDATE {self.TABLENAME} SET' \
+            f' {ID_COLUMN} = "{myItem[ID_COLUMN]}",' \
+            f' {TITLE_COLUMN} = "{myItem[TITLE_COLUMN]}",' \
+            f' {DESCRIPTION_COLUMN} = "{myItem[DESCRIPTION_COLUMN]}"' \
+            f' WHERE {ID_COLUMN} = "{myItem[ID_COLUMN]}"'
+
+        result = self.conn.execute(query)
+        self.conn.commit()
+
+        print(f"\nUpdated #{myItem[ID_COLUMN]}")
 
         return ""
 

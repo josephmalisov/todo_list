@@ -97,11 +97,51 @@ function checkButton(id) {
         curr_item = todo_items[`${id}`]
 
         $("#" + id).remove();
-        curr_item.set("isDone", todo_items[`${id}`]["isDone"] + 1)
+        curr_item.set("isDone", curr_item["isDone"] + 1)
         renderItem(curr_item)
     })
 }
 
+function editButton(id) {
+    titleSelector = $(`#${id}`).find(".title")
+    descSelector = $(`#${id}`).find(".description")
+
+    if (titleSelector.attr('contentEditable') == 'true') {
+        mytitle = titleSelector.text();
+        mydescription = descSelector.text();
+
+        myObj = {
+            [ID_COLUMN]: id,
+            [TITLE_COLUMN]: mytitle,
+            [DESCRIPTION_COLUMN]: mydescription
+        }
+
+        //put request
+        $.post(origin + "/todo/edit", JSON.stringify(myObj), function(response) {
+            curr_item = todo_items[`${id}`]
+            curr_item.set("title", mytitle)
+            curr_item.set("description", mydescription)
+
+            titleSelector.attr('contentEditable', 'false')
+            descSelector.attr('contentEditable', 'false')
+
+            //add a border to indicate edit state
+            titleSelector.removeClass("border rounded")
+            descSelector.removeClass("border rounded")
+        })
+        return
+    }
+
+    //make content editable
+    titleSelector.attr('contentEditable', 'true')
+    descSelector.attr('contentEditable', 'true')
+
+    //add a border to indicate edit state
+    titleSelector.addClass("border rounded")
+    descSelector.addClass("border rounded")
+
+    console.log(`Editing #${id}`)
+}
 //fetch notes
 updateResults();
 

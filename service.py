@@ -1,4 +1,5 @@
 from models import ToDoModel
+import json
 
 
 class ToDoService:
@@ -18,4 +19,8 @@ class ToDoService:
 
     def checkItem(self, myid):
         response = self.model.checkItem(int(myid))
+        return response
+
+    def updateItem(self, myItem):
+        response = self.model.updateItem(myItem)
         return response

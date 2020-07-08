@@ -44,6 +44,11 @@ def check_todo():
     # jsonify(ToDoService().create(request.get_json()))
     return jsonify(ToDoService().checkItem(request.get_json("hey")))
 
+@app.route("/todo/edit", methods=["POST"])
+def edit_todo():
+    # jsonify(ToDoService().create(request.get_json()))
+    return jsonify(ToDoService().updateItem(request.get_json("hey")))
+
 
 if __name__ == "__main__":
     Schema()
