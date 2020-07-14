@@ -23,17 +23,17 @@ function todo_card_maker(todo_item) {
     <div class="card-footer">
         <div class="row">
             <div class="col">
-                <button type="button" class="btn ${check_button_color} m-1" id="${todo_item["id"]}" onclick="checkButton(this.id)">
+                <button type="button" class="btn ${check_button_color} m-1 border border-dark" id="${todo_item["id"]}" onclick="checkButton(this.id)">
                     <i class="fas fa-check-circle" style="font-size:2rem;color:green;"></i>
                 </button>
             </div>
             <div class="col">
-                <button type="button" class="material-icons btn btn-danger m-2" id="${todo_item["id"]}" onclick="deleteButton(this.id)">
+                <button type="button" class="material-icons btn btn-danger m-2 border-dark" id="${todo_item["id"]}" onclick="deleteButton(this.id)">
                     delete_forever
                 </button>
             </div>
             <div class="col">
-                <button type="button" class="material-icons btn btn-info m-2" id="${todo_item["id"]}" onclick="editButton(this.id)">
+                <button type="button" class="material-icons btn btn-info m-2 border-dark" id="${todo_item["id"]}" onclick="editButton(this.id)">
                     <i class="fas fa-pencil-alt"></i>
                 </button>
             </div>
