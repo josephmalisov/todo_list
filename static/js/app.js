@@ -57,7 +57,7 @@ function updateResults() {
             console.log(response);
             addItems(response);
 
-            renderAll();
+            renderAll(todo_items);
         });
 
     } catch (exception) {
@@ -147,3 +147,25 @@ updateResults();
 
 //hide add display
 $("#addCard").hide();
+
+function search() {
+    $("#results").empty()
+    $("#results-done").empty()
+
+    userInput = $("#userInput").val()
+    if (userInput == "" | userInput == null) {
+        return renderAll(todo_items)
+    }
+
+    found = {};
+    for (i in todo_items) {
+        userInputLower = userInput.toLowerCase()
+        thisTitle = todo_items[i]["title"].toLowerCase().includes(userInputLower)
+        thisDescription = todo_items[i]["description"].toLowerCase().includes(userInputLower)
+        if (thisTitle || thisDescription) {
+            myId = todo_items[i]["id"]
+            found[`${myId}`] = todo_items[i]
+        }
+    }
+    renderAll(found)
+}

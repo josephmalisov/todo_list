@@ -22,9 +22,9 @@ function addItems(response) {
     }
 }
 
-function renderAll() {
-    for (i in todo_items) {
-        renderItem(todo_items[i])
+function renderAll(items_list) {
+    for (i in items_list) {
+        renderItem(items_list[i])
     }
 }
 
