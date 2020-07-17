@@ -3,9 +3,10 @@
 function todo_card_maker(todo_item) {
     try {
         console.log(todo_item)
+        var isDone = todo_item["isDone"] % 2;
         var bg_color = ""
         var check_button_color
-        if (parseInt(todo_item["isDone"]) % 2 == "0") {
+        if (isDone) {
             bg_color = "bg-warning"
             check_button_color = "btn-dark"
         } else {

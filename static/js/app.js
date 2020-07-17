@@ -97,7 +97,7 @@ function checkButton(id) {
         curr_item = todo_items[`${id}`]
 
         $("#" + id).remove();
-        curr_item.set("isDone", curr_item["isDone"] + 1)
+        curr_item.set("isDone", !curr_item["isDone"])
         renderItem(curr_item)
     })
 }

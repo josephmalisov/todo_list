@@ -1,6 +1,5 @@
 from flask import Flask, request, jsonify, render_template
 from service import ToDoService
-from models import Schema
 
 import json
 
@@ -18,7 +17,6 @@ def add_headers(response):
 @app.route("/")
 def hello():
     return render_template("index.html")
-
 
 @app.route("/todo/<query>")
 def hello_name(query):
@@ -51,5 +49,4 @@ def edit_todo():
 
 
 if __name__ == "__main__":
-    Schema()
     app.run(debug=True)
