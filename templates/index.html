@@ -30,16 +30,16 @@
                         <input id="userInput" onkeyup="search()" type="text" placeholder="Type here..." class="rounded">
                     </div>
                 </div>
-                <button type="button" class="btn btn-primary m-2" onclick="addButton()">
-                    Add 
-                </button>
                 <div class="card bg-dark" id="addCard">
                     <div class="col">
                         <div class="card-body">
-                            <input id="username" type="text" placeholder="Enter your name..." maxlength="20" class="p-1">
-                            <input id="newTitle" type="text" placeholder="Enter title..." maxlength="25" class="p-1">
-                            <input id="newDescription" type="text" placeholder="Enter note..." maxlength="125" class="p-1">
-                            <input type="submit" class="btn btn-secondary m-2" onclick="addNote()"></button>
+                            <ul style="list-style-type: none;">
+                                <li><input id="username" type="text" placeholder="Enter your name..." maxlength="20" class="p-1"></li>
+                                <li><input id="newTitle" type="text" placeholder="Enter title..." maxlength="25" class="p-1"></li>
+                                <li><input id="newDescription" type="text" placeholder="Enter note..." maxlength="125" class="p-1"></li>
+                                <li><input value="Add" type="submit" class="btn btn-secondary m-2" onclick="addNote()"></button>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     </form>

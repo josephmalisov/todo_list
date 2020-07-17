@@ -94,9 +94,10 @@ class ToDoModel:
 
         return result
    
-    def deleteItem(self, myId):
+    def deleteItem(self, params):
+        myId = params["id"]
         query = f'DELETE from "{self.TABLENAME}"' \
-                f' WHERE id = "{myId}"'
+                f' WHERE id = {myId}'
 
         result = self.cursor.execute(query)
         self.conn.commit()

@@ -13,8 +13,8 @@ class ToDoService:
         response = self.model.list_items(url)
         return response
 
-    def deleteItem(self, myid):
-        response = self.model.deleteItem(int(myid))
+    def deleteItem(self, params):
+        response = self.model.deleteItem(params)
         return response
 
     def checkItem(self, myid):

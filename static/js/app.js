@@ -90,7 +90,8 @@ function addNote() {
 }
 
 function deleteButton(id) {
-    $.post(origin + "/todo/del", JSON.stringify(id), function(response) {
+    myObj = { id: id }
+    $.post(origin + "/todo/del", JSON.stringify(myObj), function(response) {
         $("#" + id).remove();
         delete todo_items[`${id}`];
     })
@@ -146,11 +147,7 @@ function editButton(id) {
 
     console.log(`Editing #${id}`)
 }
-//fetch notes
-updateResults();
 
-//hide add display
-$("#addCard").hide();
 
 function search() {
     $("#results").empty()
@@ -173,3 +170,6 @@ function search() {
     }
     renderAll(found)
 }
+
+//fetch notes
+updateResults();
