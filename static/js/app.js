@@ -5,6 +5,10 @@
  */
 
 var origin = window.location.origin;
+var my_url = window.location.href;
+var id_url = my_url.split(origin + '/')[1]
+var todo_url = origin + "/todo/" + id_url
+
 
 ID_COLUMN = "id";
 TITLE_COLUMN = "Title"
@@ -43,7 +47,6 @@ var HttpClient = function() {
 //UPDATING HTML
 function updateResults() {
     try {
-        var userInput = document.getElementById("userInput").value; //get whatever is in the text field
         // if (userInput.length < 1) {
         //     return;
         // }
@@ -51,7 +54,7 @@ function updateResults() {
         $("#results").empty();
 
         var client = new HttpClient();
-        client.get(origin + "/todo/" + userInput, function(response) {
+        client.get(todo_url, function(response) {
             console.log(response);
             response = JSON.parse(response);
             console.log(response);
@@ -70,6 +73,7 @@ function addButton() {
 }
 
 function addNote() {
+    var myusername = $("#username").val();
     var mytext = $("#newTitle").val();
     var mydescription = $("#newDescription").val();
 
@@ -77,12 +81,12 @@ function addNote() {
     console.log(mydescription);
 
 
-    var myObj = { text: mytext, description: mydescription };
+    var myObj = { username: myusername, text: mytext, description: mydescription, list: id_url };
     var jsonObject = JSON.stringify(myObj);
     console.log(JSON.parse(jsonObject));
 
     //post the new note
-    $.post(origin + "/todo", jsonObject, function(response) { updateResults() })
+    $.post(todo_url, jsonObject, function(response) { updateResults() })
 }
 
 function deleteButton(id) {

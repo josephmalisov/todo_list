@@ -66,10 +66,15 @@ class ToDoModel:
                                   database = "d8trkkj3bm36c9")
         self.cursor = cursor = self.conn.cursor()
 
-    def create(self, text, description):
+    def create(self, params):
+        # TODO: fix the user auth
+        username = params["username"] 
+        text = params["text"]
+        description= params["description"]
+        mylist = params["list"]
         query = f'insert into "{self.TABLENAME}" ' \
-                f'("Title", "Description") ' \
-                f"values ('{text}','{description}');"
+                f'("Title", "Description", "UserId", "list") ' \
+                f"values ('{text}','{description}','{1}','{mylist}');"
         print("\n\n")
         print(query)
         print("\n\n")
@@ -97,9 +102,10 @@ class ToDoModel:
         self.conn.commit()
         return ""
 
-    def list_items(self):
+    def list_items(self, url):
         query = f"SELECT * " \
-                f'from "{self.TABLENAME}" WHERE _is_deleted != TRUE '
+                f'from "{self.TABLENAME}" WHERE _is_deleted != TRUE AND ' \
+                f" list = '{url}'"
         print (query)
         # result_set = self.conn.execute(query).fetchall()
         # result = [{column: row[i]

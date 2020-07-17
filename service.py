@@ -7,10 +7,10 @@ class ToDoService:
         self.model = ToDoModel()
         
     def create(self, params):
-        self.model.create(params["text"], params["description"])
+        self.model.create(params)
 
-    def listStuff(self):
-        response = self.model.list_items()
+    def listStuff(self, url):
+        response = self.model.list_items(url)
         return response
 
     def deleteItem(self, myid):

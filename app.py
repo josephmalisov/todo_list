@@ -14,22 +14,21 @@ def add_headers(response):
     return response
 
 
-@app.route("/")
-def hello():
+@app.route("/<url>")
+def hello(url):
     return render_template("index.html")
 
-@app.route("/todo/<query>")
-def hello_name(query):
-    return ToDoService().listStuff()
+@app.route("/todo/<url>")
+def hello_name(url):
+    return ToDoService().listStuff(url)
 
+# @app.route("/todo/", methods=["GET"])
+# def list_todo():
+#     response = ToDoService().listStuff()
+#     return response
 
-@app.route("/todo/", methods=["GET"])
-def list_todo():
-    response = ToDoService().listStuff()
-    return response
-
-@app.route("/todo", methods=["POST"])
-def create_todo():
+@app.route("/todo/<url>", methods=["POST"])
+def create_todo(url):
     return jsonify(ToDoService().create(request.get_json("hey")))
 
 @app.route("/todo/del", methods=["POST"])
