@@ -13,10 +13,19 @@ def add_headers(response):
     response.headers['Access-Control-Allow-Methods']=  "POST, GET, PUT, DELETE, OPTIONS"
     return response
 
+@app.route("/")
+def home():
+    return render_template("home.html")
+
+@app.route("/newList")
+def newList():
+    return ToDoService().newList()
 
 @app.route("/<url>")
-def hello(url):
-    return render_template("index.html")
+def myurl(url):
+    if (ToDoService().url_checker(url)):
+        return render_template("index.html")
+    return "Not Valid"
 
 @app.route("/todo/<url>")
 def hello_name(url):

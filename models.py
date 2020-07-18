@@ -143,7 +143,7 @@ class ToDoModel:
 
         return ""
 
-class User:
+class UserModel:
     TABLENAME = "User"
 
     def create(self, name, email):
@@ -153,20 +153,42 @@ class User:
         result = self.cursor.execute(query)
         return result
 
-class URL:
+class urlModel:
     TABLENAME = "list"
+    # TODO: what if list with this url already exists, or the url is a route
 
+    def __init__(self):
+        self.conn = psycopg2.connect(user = "azbqralazbwyxa",
+                                  password = "0206a0e69bbd6645722f471b1997afdefb56e3d4bac73044a69e7859d54efaca",
+                                  host = "ec2-54-211-210-149.compute-1.amazonaws.com",
+                                  port = "5432",
+                                  database = "d8trkkj3bm36c9")
+        self.cursor = cursor = self.conn.cursor()
+    
     def create(self):
         randomURL = get_random_string(15)
         query = f'insert into "{self.TABLENAME}" ' \
                 f'(url) ' \
-                f'values ({randomURL})'
+                f"values ('{randomURL}')"
         result = self.cursor.execute(query)
-        return result
+        print(query)
+        print(result)
+        return randomURL
+
+    def url_checker(self, url):
+        query = f'select * from "{self.TABLENAME}" ' \
+                f"where url = '{url}'"
+        result = self.cursor.execute(query)
+        if (result != None):
+            return True
+        else:
+            return False
+
 
     
 def get_random_string(length):
     # Random string with the combination of lower and upper case
-        letters = string.ascii_letters
-        result_str = ''.join(random.choice(letters) for i in range(length))
-        print("Random string is:", result_str)
+    letters = string.ascii_letters
+    result_str = ''.join(random.choice(letters) for i in range(length))
+    print("Random string is:", result_str)
+    return result_str

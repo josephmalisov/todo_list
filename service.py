@@ -1,10 +1,11 @@
-from models import ToDoModel
+from models import ToDoModel, urlModel
 import json
 
 
 class ToDoService:
     def __init__(self):
         self.model = ToDoModel()
+        self.url = urlModel()
         
     def create(self, params):
         self.model.create(params)
@@ -24,3 +25,12 @@ class ToDoService:
     def updateItem(self, myItem):
         response = self.model.updateItem(myItem)
         return response
+
+    def newList(self):
+        return self.url.create()
+
+    def url_checker(self, url): 
+        if (self.url.url_checker(url)):
+            return True
+        else:
+            return False
