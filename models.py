@@ -171,15 +171,31 @@ class urlModel:
                 f'(url) ' \
                 f"values ('{randomURL}')"
         result = self.cursor.execute(query)
+        self.conn.commit()
         print(query)
         print(result)
         return randomURL
 
     def url_checker(self, url):
-        query = f'select * from "{self.TABLENAME}" ' \
-                f"where url = '{url}'"
-        result = self.cursor.execute(query)
-        if (result != None):
+        # query = f'select * from "{self.TABLENAME}" ' \
+        #         f"where url = '{url}'"
+        # result = self.cursor.execute(query)
+
+        query = f"SELECT * " \
+                f'from "Todo" WHERE _is_deleted != TRUE AND ' \
+                f" list = '{url}'"
+        print (query)
+        # result_set = self.conn.execute(query).fetchall()
+        # result = [{column: row[i]
+        #           for i, column in enumerate(result_set[0].keys())}
+        #           for row in result_set]
+        df = pd.read_sql_query(query, self.conn)
+        print(df)
+
+        self.conn.commit()
+        print(query)
+        print(df)
+        if (not df.empty):
             return True
         else:
             return False
