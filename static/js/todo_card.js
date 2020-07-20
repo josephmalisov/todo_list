@@ -17,11 +17,11 @@ function todo_card_maker(todo_item) {
 <div class="card ${bg_color} m-4" id="${todo_item["id"]}">
     <div class="card-header pb-0">
         <div class="row">
-            <div class="col">
+            <div class="col-8">
                 <h4><b class="title p-1">${todo_item["title"]}</b></h4>
             </div>
-            <div class="col">
-                <p3><b class="user p-1">${todo_item["userId"]}</b></p3>
+            <div class="col-1">
+                <p3  class="user p-1">${todo_item["userId"]}</b></p3>
             </div>
         </div>
     </div>
