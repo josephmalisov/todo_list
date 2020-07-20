@@ -18,3 +18,7 @@ db = create_engine(db_string)
 result_set = db.execute("SELECT * FROM list")  
 for r in result_set:  
     print(r)
+
+class Todo(Base):
+    __table__ = Table('Todo', Base.metadata,
+                    autoload=True, autoload_with=some_engine)

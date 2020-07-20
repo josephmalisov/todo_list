@@ -7,16 +7,23 @@ function todo_card_maker(todo_item) {
         var bg_color = ""
         var check_button_color
         if (isDone) {
-            bg_color = "bg-warning"
+            bg_color = "bg-success"
             check_button_color = "btn-dark"
         } else {
-            bg_color = "bg-success"
+            bg_color = "bg-warning"
             check_button_color = "btn-dark"
         }
         return `
 <div class="card ${bg_color} m-4" id="${todo_item["id"]}">
     <div class="card-header pb-0">
-        <h4><b class="title p-1">${todo_item["title"]}</b></h4>
+        <div class="row">
+            <div class="col">
+                <h4><b class="title p-1">${todo_item["title"]}</b></h4>
+            </div>
+            <div class="col">
+                <p3><b class="user p-1">${todo_item["userId"]}</b></p3>
+            </div>
+        </div>
     </div>
     <div class="card-body">
         <h6 class="description p-1">${todo_item["description"]}</h6>

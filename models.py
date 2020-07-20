@@ -5,13 +5,13 @@ import string
 import random
 
 ID_COLUMN = "id"
-TITLE_COLUMN = "Title"
-DESCRIPTION_COLUMN = "Description"
+TITLE_COLUMN = "title"
+DESCRIPTION_COLUMN = "description"
 IS_DONE_COLUMN = "_is_done"
 IS_DELETED_COLUMN = "_is_deleted"
-CREATED_ON_COLUMN = "CreatedOn"
-DUE_DATE_COLUMN = "DueDate"
-USER_ID_COLUMN = "UserId"
+CREATED_ON_COLUMN = "created"
+DUE_DATE_COLUMN = "due"
+USER_ID_COLUMN = "userid"
 
 # class Schema:
 #     def __init__(self):
@@ -56,7 +56,7 @@ USER_ID_COLUMN = "UserId"
 
 
 class ToDoModel:
-    TABLENAME = "Todo"
+    TABLENAME = "todo"
 
     def __init__(self):
         self.conn = psycopg2.connect(user = "azbqralazbwyxa",
@@ -131,9 +131,9 @@ class ToDoModel:
 
     def updateItem(self, myItem):
         query = f'UPDATE "{self.TABLENAME}" SET' \
-            f' {ID_COLUMN} = "{myItem[ID_COLUMN]}",' \
-            f' {TITLE_COLUMN} = "{myItem[TITLE_COLUMN]}",' \
-            f' {DESCRIPTION_COLUMN} = "{myItem[DESCRIPTION_COLUMN]}"' \
+            f' {ID_COLUMN} = {myItem[ID_COLUMN]},' \
+            f" {TITLE_COLUMN} = '{myItem[TITLE_COLUMN]}'," \
+            f" {DESCRIPTION_COLUMN} = '{myItem[DESCRIPTION_COLUMN]}'" \
             f' WHERE {ID_COLUMN} = {myItem[ID_COLUMN]}'
 
         result = self.cursor.execute(query)

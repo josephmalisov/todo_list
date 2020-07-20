@@ -11,13 +11,13 @@ var todo_url = origin + "/todo/" + id_url
 
 
 ID_COLUMN = "id";
-TITLE_COLUMN = "Title"
-DESCRIPTION_COLUMN = "Description"
+TITLE_COLUMN = "title"
+DESCRIPTION_COLUMN = "description"
 IS_DONE_COLUMN = "_is_done"
 IS_DELETED_COLUMN = "_is_deleted"
-CREATED_ON_COLUMN = "CreatedOn"
-DUE_DATE_COLUMN = "DueDate"
-USER_ID_COLUMN = "UserId"
+CREATED_ON_COLUMN = "created"
+DUE_DATE_COLUMN = "due"
+USER_ID_COLUMN = "userid"
 
 
 //credit to https://stackoverflow.com/questions/247483/http-get-request-in-javascript
