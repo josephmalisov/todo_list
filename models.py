@@ -12,6 +12,7 @@ IS_DELETED_COLUMN = "_is_deleted"
 CREATED_ON_COLUMN = "created"
 DUE_DATE_COLUMN = "due"
 USER_ID_COLUMN = "userid"
+LIST_COLUMN = "list"
 
 # class Schema:
 #     def __init__(self):
@@ -73,7 +74,7 @@ class ToDoModel:
         description= params["description"]
         mylist = params["list"]
         query = f'insert into "{self.TABLENAME}" ' \
-                f'("Title", "Description", "UserId", "list") ' \
+                f'({TITLE_COLUMN}, {DESCRIPTION_COLUMN}, {USER_ID_COLUMN}, {LIST_COLUMN}) ' \
                 f"values ('{text}','{description}','{1}','{mylist}');"
         print("\n\n")
         print(query)
@@ -87,7 +88,7 @@ class ToDoModel:
         print(result)
         print("\n\n")
 
-        df = pd.read_sql_query('SELECT * from "Todo";', self.conn)
+        df = pd.read_sql_query(f"SELECT * from {self.TABLENAME};", self.conn)
         print("\n\n")
         print(df)
         print("\n\n")
@@ -166,7 +167,7 @@ class urlModel:
         self.cursor = cursor = self.conn.cursor()
     
     def create(self):
-        randomURL = get_random_string(15)
+        randomURL = get_random_string(10)
         query = f'insert into "{self.TABLENAME}" ' \
                 f'(url) ' \
                 f"values ('{randomURL}')"
