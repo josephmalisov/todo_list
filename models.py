@@ -134,7 +134,7 @@ class ToDoModel:
             f' {ID_COLUMN} = "{myItem[ID_COLUMN]}",' \
             f' {TITLE_COLUMN} = "{myItem[TITLE_COLUMN]}",' \
             f' {DESCRIPTION_COLUMN} = "{myItem[DESCRIPTION_COLUMN]}"' \
-            f' WHERE {ID_COLUMN} = "{myItem[ID_COLUMN]}"'
+            f' WHERE {ID_COLUMN} = {myItem[ID_COLUMN]}'
 
         result = self.cursor.execute(query)
         self.conn.commit()
