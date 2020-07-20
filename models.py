@@ -182,8 +182,8 @@ class urlModel:
         # result = self.cursor.execute(query)
 
         query = f"SELECT * " \
-                f'from "Todo" WHERE _is_deleted != TRUE AND ' \
-                f" list = '{url}'"
+                f'from "list" WHERE ' \
+                f" url = '{url}'"
         print (query)
         # result_set = self.conn.execute(query).fetchall()
         # result = [{column: row[i]
