@@ -73,7 +73,10 @@ function addButton() {
 }
 
 function addNote() {
-    var myusername = $("#username").val();
+    // var myusername = $("#username").val();
+    //TODO: fix this username biz
+    var myusername = ""
+
     var mytext = $("#newTitle").val();
     var mydescription = $("#newDescription").val();
 
