@@ -28,22 +28,23 @@ function todo_card_maker(todo_item) {
     <div class="card-body">
         <h6 class="description p-1">${todo_item["description"]}</h6>
     </div>
-    <div class="card-footer">
-        <div class="row">
-            <div class="col">
-                <button type="button" class="btn ${check_button_color} m-1 border border-dark" id="${todo_item["id"]}" onclick="checkButton(this.id)">
-                    <i class="fas fa-check-circle" style="font-size:2rem;color:green;"></i>
-                </button>
-            </div>
-            <div class="col">
-                <button type="button" class="material-icons btn btn-danger m-2 border-dark" id="${todo_item["id"]}" onclick="deleteButton(this.id)">
-                    delete_forever
-                </button>
-            </div>
-            <div class="col">
-                <button type="button" class="material-icons btn btn-info m-2 border-dark" id="${todo_item["id"]}" onclick="editButton(this.id)">
-                    <i class="fas fa-pencil-alt"></i>
-                </button>
+    <div class="card-footer p-1">
+            <div class="row mx-auto">
+                <div class="col">
+                    <button type="button" class="btn ${check_button_color} m-0 border border-dark" id="${todo_item["id"]}" onclick="checkButton(this.id)">
+                        <i class="fas fa-check-circle" style="font-size:2rem;color:green;"></i>
+                    </button>
+                </div>
+                <div class="col my-auto">
+                    <button type="button" class="material-icons btn btn-danger m-0 border-dark" id="${todo_item["id"]}" onclick="deleteButton(this.id)">
+                        delete_forever
+                    </button>
+                </div>
+                <div class="col my-auto">
+                    <button type="button" class="material-icons btn btn-info m-0 border-dark" id="${todo_item["id"]}" onclick="editButton(this.id)">
+                        <i class="fas fa-pencil-alt"></i>
+                    </button>
+                </div>
             </div>
         </div>
     </div>

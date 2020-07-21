@@ -4,6 +4,8 @@ import psycopg2
 import string
 import random
 
+#TODO: ENFORCE MAX LENGTHS
+
 ID_COLUMN = "id"
 TITLE_COLUMN = "title"
 DESCRIPTION_COLUMN = "description"
