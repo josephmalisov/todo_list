@@ -1,4 +1,5 @@
-import sqlite3
+# import sqlite3
+import json
 import pandas as pd
 import psycopg2
 import string
@@ -16,57 +17,20 @@ DUE_DATE_COLUMN = "due"
 USER_ID_COLUMN = "userid"
 LIST_COLUMN = "list"
 
-# class Schema:
-#     def __init__(self):
-#         self.conn = sqlite3.connect('todo.db')
-#         self.create_user_table()
-#         self.create_to_do_table()
-#         # user table must be created first b/c of foreign key
+config = open("config.json")
+db_info = json.load(config)
 
-#     def __del__(self):
-#         # body of destructor
-#         self.conn.commit()
-#         self.conn.close()
-
-#     def create_to_do_table(self):
-
-#         query2 = """
-        
-#         CREATE TABLE IF NOT EXISTS "Todo" (
-#           id INTEGER PRIMARY KEY,
-#           Title TEXT,
-#           Description TEXT,
-#           _is_done boolean DEFAULT 0,
-#           _is_deleted boolean DEFAULT 0,
-#           CreatedOn Date DEFAULT CURRENT_DATE,
-#           DueDate Date,
-#           UserId INTEGER FOREIGNKEY REFERENCES User(_id)
-#         );
-#         """
-
-#         self.conn.execute(query2)
-
-#     def create_user_table(self):
-#         query = """
-#         CREATE TABLE IF NOT EXISTS "User" (
-#         _id INTEGER PRIMARY KEY AUTOINCREMENT, 
-#         Name TEXT NOT NULL, 
-#         Email TEXT, 
-#         CreatedOn Date default CURRENT_DATE
-#         );
-#         """
-#         self.conn.execute(query)
-
+# TODO: Create Class Schema
 
 class ToDoModel:
     TABLENAME = "todo"
 
     def __init__(self):
-        self.conn = psycopg2.connect(user = "azbqralazbwyxa",
-                                  password = "0206a0e69bbd6645722f471b1997afdefb56e3d4bac73044a69e7859d54efaca",
-                                  host = "ec2-54-211-210-149.compute-1.amazonaws.com",
-                                  port = "5432",
-                                  database = "d8trkkj3bm36c9")
+        self.conn = psycopg2.connect(user = db_info["user"],
+                                  password = db_info["password"],
+                                  host = db_info["host"],
+                                  port = db_info["port"],
+                                  database = db_info["database"])
         self.cursor = cursor = self.conn.cursor()
 
     def create(self, params):
