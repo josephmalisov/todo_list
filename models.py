@@ -19,6 +19,7 @@ LIST_COLUMN = "list"
 
 config = open("config.json")
 db_info = json.load(config)
+config.close()
 
 # TODO: Create Class Schema
 
@@ -30,7 +31,8 @@ class ToDoModel:
                                   password = db_info["password"],
                                   host = db_info["host"],
                                   port = db_info["port"],
-                                  database = db_info["database"])
+                                  database = db_info["database"],
+                                  sslmode = 'require')
         self.cursor = cursor = self.conn.cursor()
 
     def create(self, params):
@@ -125,11 +127,12 @@ class urlModel:
     # TODO: what if list with this url already exists, or the url is a route
 
     def __init__(self):
-        self.conn = psycopg2.connect(user = "azbqralazbwyxa",
-                                  password = "0206a0e69bbd6645722f471b1997afdefb56e3d4bac73044a69e7859d54efaca",
-                                  host = "ec2-54-211-210-149.compute-1.amazonaws.com",
-                                  port = "5432",
-                                  database = "d8trkkj3bm36c9")
+        self.conn = psycopg2.connect(user = db_info["user"],
+                                  password = db_info["password"],
+                                  host = db_info["host"],
+                                  port = db_info["port"],
+                                  database = db_info["database"],
+                                  sslmode = 'require')
         self.cursor = cursor = self.conn.cursor()
     
     def create(self):
@@ -166,8 +169,6 @@ class urlModel:
             return True
         else:
             return False
-
-
     
 def get_random_string(length):
     # Random string with the combination of lower and upper case
