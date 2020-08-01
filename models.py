@@ -20,9 +20,9 @@ DUE_DATE_COLUMN = "due"
 USER_ID_COLUMN = "userid"
 LIST_COLUMN = "list"
 
-config = open("config.json")
-db_info = json.load(config)
-config.close()
+# config = open("config.json")
+# db_info = json.load(config)
+# config.close()
 
 # TODO: Create Class Schema
 
@@ -125,12 +125,7 @@ class urlModel:
     # TODO: what if list with this url already exists, or the url is a route
 
     def __init__(self):
-        self.conn = psycopg2.connect(user = db_info["user"],
-                                  password = db_info["password"],
-                                  host = db_info["host"],
-                                  port = db_info["port"],
-                                  database = db_info["database"],
-                                  sslmode = 'require')
+        self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         self.cursor = cursor = self.conn.cursor()
     
     def create(self):
