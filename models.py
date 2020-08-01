@@ -33,9 +33,17 @@ class ToDoModel:
         self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         self.cursor = cursor = self.conn.cursor()
 
+    def __del__(self):
+        self.conn.commit()
+        self.conn.close()
+
     def create(self, params):
         # TODO: fix the user auth
-        username = params["username"] 
+        try:
+            username = params["username"]
+        except Exception:
+            pass
+        
         text = params["text"]
         description= params["description"]
         mylist = params["list"]
@@ -47,7 +55,7 @@ class ToDoModel:
         print("\n\n")
 
         result = self.cursor.execute(query)
-        self.conn.commit()
+        
         # self.conn.commit()
 
         print("\n\n")
@@ -113,6 +121,10 @@ class ToDoModel:
 class UserModel:
     TABLENAME = "User"
 
+    def __del__(self):
+        self.conn.commit()
+        self.conn.close()
+
     def create(self, name, email):
         query = f'insert into "{self.TABLENAME}" ' \
                 f'(Name, Email) ' \
@@ -127,6 +139,10 @@ class urlModel:
     def __init__(self):
         self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         self.cursor = cursor = self.conn.cursor()
+
+    def __del__(self):
+        self.conn.commit()
+        self.conn.close()
     
     def create(self):
         randomURL = get_random_string(10)
