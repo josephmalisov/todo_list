@@ -1,9 +1,12 @@
 # import sqlite3
+import os
 import json
 import pandas as pd
 import psycopg2
 import string
 import random
+
+DATABASE_URL = os.environ['DATABASE_URL']
 
 #TODO: ENFORCE MAX LENGTHS
 
@@ -27,12 +30,7 @@ class ToDoModel:
     TABLENAME = "todo"
 
     def __init__(self):
-        self.conn = psycopg2.connect(user = db_info["user"],
-                                  password = db_info["password"],
-                                  host = db_info["host"],
-                                  port = db_info["port"],
-                                  database = db_info["database"],
-                                  sslmode = 'require')
+        self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
         self.cursor = cursor = self.conn.cursor()
 
     def create(self, params):
