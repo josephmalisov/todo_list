@@ -20,10 +20,6 @@ DUE_DATE_COLUMN = "due"
 USER_ID_COLUMN = "userid"
 LIST_COLUMN = "list"
 
-# config = open("config.json")
-# db_info = json.load(config)
-# config.close()
-
 # TODO: Create Class Schema
 
 class ToDoModel:
@@ -55,16 +51,9 @@ class ToDoModel:
         print("\n\n")
 
         result = self.cursor.execute(query)
-        
-        # self.conn.commit()
 
         print("\n\n")
         print(result)
-        print("\n\n")
-
-        df = pd.read_sql_query(f"SELECT * from {self.TABLENAME};", self.conn)
-        print("\n\n")
-        print(df)
         print("\n\n")
 
         return result
@@ -83,13 +72,7 @@ class ToDoModel:
                 f'from "{self.TABLENAME}" WHERE _is_deleted != TRUE AND ' \
                 f" list = '{url}'"
         print (query)
-        # result_set = self.conn.execute(query).fetchall()
-        # result = [{column: row[i]
-        #           for i, column in enumerate(result_set[0].keys())}
-        #           for row in result_set]
         df = pd.read_sql_query(query, self.conn)
-        self.conn.commit()
-        print(df) #just for displaying the result
         result = df.to_json()
         return result
 
