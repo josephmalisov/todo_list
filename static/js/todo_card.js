@@ -20,9 +20,6 @@ function todo_card_maker(todo_item) {
             <div class="col-8">
                 <h4><b class="title p-1">${todo_item["title"]}</b></h4>
             </div>
-            <div class="col-1">
-                <p3  class="user p-1">${todo_item["userId"]}</b></p3>
-            </div>
         </div>
     </div>
     <div class="card-body">
