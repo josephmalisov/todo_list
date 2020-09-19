@@ -10,7 +10,7 @@ function todo_card_maker(todo_item) {
             bg_color = "bg-success"
             check_button_color = "btn-dark"
         } else {
-            bg_color = "bg-warning"
+            bg_color = "orange"
             check_button_color = "btn-dark"
         }
         return `
