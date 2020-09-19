@@ -156,7 +156,7 @@ function search() {
     $("#results").empty()
     $("#results-done").empty()
 
-    userInput = $("#userInput").val()
+    userInput = $("#userInput").val() //user enters nothing or clears the box
     if (userInput == "" | userInput == null) {
         return renderAll(todo_items)
     }

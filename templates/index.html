@@ -21,12 +21,12 @@
 </head>
 
 <body style="background-color: #263c57;">
-    <div class="container" style="background-color: #f56969; text-align: center;">
+    <div class="container-fluid" style="background-color: #f56969; text-align: center;">
         <p1>Remember that anything posted here is not secure, as anyone can visit this URL.</p1>
     </div>
-    <div class="container m-4">
+    <div class="container my-4">
         <div class="row">
-            <div class="col">
+            <div class="col-md">
                 <div class="card bg-light" id="addCard">
                     <div class="card-body">
                         <h3><b>Add Task:</b></h3>
@@ -40,27 +40,30 @@
                     </div>
                     </form>
                 </div>
-                <div class="card rounded-lg  mt-2" style="background-color:lightblue">
+                <div class="card rounded-lg mt-2" style="background-color:lightblue">
                     <div class="card-body">
                         <h3><b>Search your tasks:</b></h3>
                         <input id="userInput" class="form-control" onkeyup="search()" type="text" placeholder="Type here..." class="rounded">
                     </div>
                 </div>
 
-                <div id="results-done">
-                    <h3 class="my-2 text-light">
-                        <b>Finished:</b><br/>
-                    </h3>
-                </div>
+
             </div>
-            <div class="col rounded-lg h-100 p-4" style="background-color: #cfa5cf;">
-                <h3>
+            <div class="col-sm rounded-lg h-100">
+                <h3 class="my-2 pt-2 text-light">
                     <b>Todo:</b><br/>
                 </h3>
                 <div id="results">
                 </div>
             </div>
+            <div class="col-sm rounded-lg h-100">
+                <h3 class="my-2 pt-2 text-light">
+                    <b>Finished:</b><br/>
+                </h3>
+                <div id="results-done"></div>
+            </div>
         </div>
+    </div>
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
