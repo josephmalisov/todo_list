@@ -36,20 +36,22 @@
                         <ul style="list-style-type: none; margin: 0; padding: 0;">
                             <!-- <li><input id="username" type="text" placeholder="Enter your name..." maxlength="20" class="p-1"></li> -->
                             <li><input id="newTitle" class="form-control" type="text" placeholder="Enter title..." maxlength="25" class="p-1"></li>
-                            <li><textarea rows="3" id="newDescription" class="form-control" type="text" placeholder="Enter note..." maxlength="125" class="p-1"></textarea></li>
+                            <li><textarea rows="3" id="newDescription" class="form-control my-1" type="text" placeholder="Enter note..." maxlength="125" class="p-1"></textarea></li>
                             <li><input value="Add" type="submit" class="btn btn-secondary m-2" onclick="addNote()"></button>
                             </li>
                         </ul>
                     </div>
                     </form>
                 </div>
-                <div class="card rounded-lg mt-2" style="background-color:lightblue">
+                <div class="card rounded-lg mt-2" style="background-color:#add8e6">
                     <div class="card-body">
                         <h3><b>Search your tasks:</b></h3>
                         <input id="userInput" class="form-control" onkeyup="search()" type="text" placeholder="Type here..." class="rounded">
                     </div>
                 </div>
-                <a id="share" href="#" class="btn btn-primary btn-lg active mt-2 w-100" role="button" aria-pressed="true" onclick="copylink()">Share (copy link)</a>
+                <a id="share" href="#" class="btn btn-primary btn-lg active mt-2 w-100" role="button" aria-pressed="true" onclick="copylink()" style="background-color: #D7ADE6; color: black;">
+                    <p1><b>Share (copy link)</b></p1>
+                </a>
             </div>
             <div class="col-lg rounded-lg h-100">
                 <h3 class="my-2 pt-2 text-light">
