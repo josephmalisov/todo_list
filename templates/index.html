@@ -30,10 +30,10 @@
                 <div class="card bg-light" id="addCard">
                     <div class="card-body">
                         <h3><b>Add Task:</b></h3>
-                        <ul style="list-style-type: none;">
+                        <ul style="list-style-type: none; margin: 0; padding: 0;">
                             <!-- <li><input id="username" type="text" placeholder="Enter your name..." maxlength="20" class="p-1"></li> -->
-                            <li><input id="newTitle" type="text" placeholder="Enter title..." maxlength="25" class="p-1"></li>
-                            <li><input id="newDescription" type="text" placeholder="Enter note..." maxlength="125" class="p-1"></li>
+                            <li><input id="newTitle" class="form-control" type="text" placeholder="Enter title..." maxlength="25" class="p-1"></li>
+                            <li><textarea rows="3" id="newDescription" class="form-control" type="text" placeholder="Enter note..." maxlength="125" class="p-1"></textarea></li>
                             <li><input value="Add" type="submit" class="btn btn-secondary m-2" onclick="addNote()"></button>
                             </li>
                         </ul>
@@ -43,7 +43,7 @@
                 <div class="card rounded-lg  mt-2" style="background-color:lightblue">
                     <div class="card-body">
                         <h3><b>Search your tasks:</b></h3>
-                        <input id="userInput" onkeyup="search()" type="text" placeholder="Type here..." class="rounded">
+                        <input id="userInput" class="form-control" onkeyup="search()" type="text" placeholder="Type here..." class="rounded">
                     </div>
                 </div>
 
